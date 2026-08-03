@@ -1,0 +1,25 @@
+name: 02-Sequential Jobs Pipeline
+
+on: workflow_dispatch
+
+jobs:
+    build-on:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Build Application
+              run: echo "Building the application artifact..."
+
+    test-job:
+        needs: build-on
+        runs-on: ubuntu-latest
+        steps:
+            - name: Test Application
+              run: echo "Running automates unit tests..."
+    
+    deploy-job:
+        needs: test-job
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deploy Application
+              run: echo "Deploying application to environment..."
+
