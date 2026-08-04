@@ -1,0 +1,36 @@
+name: 07 Sample Workflow
+
+on: workflow_dispatch
+
+jobs:
+
+
+    Build:
+        runs-on: ubuntu-latest
+        env:
+            Build_Job_VAR: "This is Code building Statge"
+        steps:
+            - name: Writing AI Agent Code
+              run: |
+                  echo "${{ env.Build_Job_VAR }}"
+                  echo "This is the whole code to run AI Agent Application" 
+    
+    Test:
+        needs: Build
+        runs-on: ubuntu-latest
+        steps:
+            - name: Testing Code For AI Agent
+              run: |
+                   echo "Make Sure tesing to Run Code when it is moved on to Production"
+                   echo "If code is not running, and then don't go to the next step"
+                   echo "Testig is successful"
+
+
+    Deployment:
+        needs: Test
+        runs-on: ubuntu-latest
+        steps:
+            - name: Deployment Stage
+              run: |
+                echo "Now, code is developting onto the production"
+                echo "Deployment is successful"
