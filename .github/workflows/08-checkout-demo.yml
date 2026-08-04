@@ -1,4 +1,4 @@
-name: Checkout Demo Workflow
+name: 08 Checkout Demo Workflow
 
 on: workflow_dispatch
 
