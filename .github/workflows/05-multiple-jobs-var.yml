@@ -1,0 +1,29 @@
+name: 05 - Multiple Jobs With Variable
+
+on: workflow_dispatch
+
+env:
+    GLOBAL_VAR: "The project is successful!"
+
+jobs:
+    Build:
+        runs-on: ubuntu-latest
+        env:
+            BUILD_VAR: "Building Stage is Successful!"
+        steps:
+            - name: This is Code Building Stage
+              run: echo "${{ env.BUILD_VAR}}"
+
+    Test:
+        needs: Build
+        runs-on: ubuntu-latest
+        steps:
+            - name: Code Testing
+              run: echo "This testing stage is successful!"
+
+    Deploy:
+        needs: Test
+        runs-on: ubuntu-latest
+        steps:
+            - name: This is Final Stage!
+              run: echo "${{ env.GLOBAL_VAR}}"
