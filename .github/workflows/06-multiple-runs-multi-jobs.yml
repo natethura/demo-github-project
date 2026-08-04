@@ -1,0 +1,32 @@
+name: 06 Multiple Commands Run With Multi Jobs
+
+on: workflow_dispatch
+
+jobs:
+    Build:
+        env:
+            JOB_BUILD_VAR: "Code Building Stage!"
+        runs-on: ubuntu-latest
+        steps:
+            - name: "This is Code Building Stage"
+              run: |
+                echo "This is ${{ env.JOB_BUILD_VAR }}"
+                echo "Check My Code"
+    
+    Test:
+        needs: Build
+        runs-on: ubuntu-latest
+        steps:
+            - name: "This is Code Testing Stage"
+              run: |
+                echo "Check whether code is working or not!"
+                echo "If code is wokring probably then move to development stage"
+
+    Deploy:
+        needs: Test
+        runs-on: ubuntu-latest
+        steps:
+            - name: "The project is successful!"
+              run: |
+                 echo "Code is successfuly deployed on your application"
+                 echo "Job done"
