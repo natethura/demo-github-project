@@ -1,0 +1,30 @@
+name: 10 Automatic Deployment on Push
+
+on:
+  push:
+    branches:
+      - main # 👈 Branch နာမည် ထည့်ပေးရပါမည်
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  Deploy-GitHub-Page:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Check GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Deploy Code
+        uses: actions/deploy-pages@v4
