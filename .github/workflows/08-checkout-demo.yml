@@ -1,0 +1,18 @@
+name: Checkout Demo Workflow
+
+on: workflow_dispatch
+
+jobs:
+    Rad-Code-Job:
+        runs-on: ubuntu-latest
+        steps:
+            # 🌟 1️⃣ Repo ထဲက Code တွေကို Runner စက်ထဲသို့ git clone လုပ်ယူခြင်း
+            - name: Checkout Code from Repository
+              uses: actions/checkout@v4
+
+     
+            # 🌟 2️⃣ Code ရောက်မရောက် စက်ထဲက index.html ကို ဖတ်ပြခိုင်းခြင်း
+            - name: Read index.html Content
+              run: |
+                 echo "=== Reading index.html file ==="
+                 cat index.html
