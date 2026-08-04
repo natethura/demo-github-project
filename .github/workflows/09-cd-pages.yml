@@ -1,30 +1,31 @@
-name: 09 Continous Deployment to GitHub Pages
+name: 09 Continuous Deployment to GitHub Pages
 
 on: workflow_dispatch
 
+# GitHub Pages သို့ တင်ရန် လိုအပ်သော Permissions ပေးခြင်း
 permissions:
-    contents: read
-    pages: write
-    id-token: write
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-    deploy-to-pages:
-        runs-on: ubuntu-latest
-        steps:
-            # 1️⃣ Code များကို Runner စက်ထဲသို့ Clone လုပ်ခြင်း
-            - name: Checkout Code
-              run: actions/checkout@v4
-             
-            # 2️⃣ GitHub Pages ပတ်ဝန်းကျင် ပြင်ဆင်ခြင်း
-            - name: Setup GitHub Pages
-              uses: actions/configure-pages@v5
+  deploy-to-pages:
+    runs-on: ubuntu-latest
+    steps:
+      # 1️⃣ Code များကို Runner စက်ထဲသို့ Clone လုပ်ခြင်း
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-            # 3️⃣ index.html ပါသော ဖိုဒါကို Upload ပြုလုပ်ခြင်း
-            - name: Upload Artifact
-              uses: actions/upload-pages-artifact@v3
-              with:
-                path: '.'
+      # 2️⃣ GitHub Pages ပတ်ဝန်းကျင် ပြင်ဆင်ခြင်း
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v5
 
-            # 4️⃣ GitHub Pages ပေါ်သို့ Live Deploy တင်ခြင်း
-            - name: Deploy to GitHub Pages
-              uses: actions/deploy-pages@v4
+      # 3️⃣ index.html ပါသော ဖိုဒါကို Upload ပြုလုပ်ခြင်း
+      - name: Upload Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      # 4️⃣ GitHub Pages ပေါ်သို့ Live Deploy တင်ခြင်း
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
