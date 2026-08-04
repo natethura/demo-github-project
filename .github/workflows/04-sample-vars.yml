@@ -10,8 +10,8 @@ jobs:
         runs-on: ubuntu-latest
         env:
             JOB_VAR: "Keep Learning"
-        run:
-           echo "${{ env.GLOBAL_VAR }}"
-
-        run:
-            echo "${{ env.JOB_VAR }}" 
+        steps:
+            - name: Print Variable
+              run: |
+                echo "${{ env.GLOBAL_VAR }}"
+                echo "${{ env.JOB_VAR }}" 
