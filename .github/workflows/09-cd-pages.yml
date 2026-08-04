@@ -13,11 +13,11 @@ jobs:
         steps:
             # 1️⃣ Code များကို Runner စက်ထဲသို့ Clone လုပ်ခြင်း
             - name: Checkout Code
-              run: action/checkout@v4
+              run: actions/checkout@v4
              
             # 2️⃣ GitHub Pages ပတ်ဝန်းကျင် ပြင်ဆင်ခြင်း
             - name: Setup GitHub Pages
-              uses: action/configure-pages@v5
+              uses: actions/configure-pages@v5
 
             # 3️⃣ index.html ပါသော ဖိုဒါကို Upload ပြုလုပ်ခြင်း
             - name: Upload Artifact
