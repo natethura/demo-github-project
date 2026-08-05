@@ -1,0 +1,35 @@
+name: 12 Day02 Checkout Lab
+
+on: workflow_dispatch
+
+jobs:
+  without-checkout:
+    name: Check Ko Sai's status before watching video
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Status
+        run: |
+          echo "=== Checking Ko Sai's status BEFORE he watches the video ==="
+          echo "=== If he is moving, then he is not sleeping yet ==="
+          ls -la
+
+  with-checkout:
+    name: Check Ko Sai's status while watching video
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Status before he sleeps
+        run: |
+          echo "=== Checking status BEFORE he falls asleep ==="
+          echo "=== If he is still moving, he is not asleep yet. Moving to next stage... ==="
+          ls -la
+
+      - name: Checkout Repository Code
+        uses: actions/checkout@v4
+
+      - name: Check Status After 5 minutes
+        run: |
+          echo "=== Checking Ko Sai's status AFTER 5 minutes ==="
+          ls -la
+          echo "=== If he is snoring, then he is definitely sleeping! ==="
+          echo "=== Reading index.html content ==="
+          cat index.html
