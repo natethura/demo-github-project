@@ -1,0 +1,38 @@
+name: 11 Day02 Sample Workflow
+
+on: workflow_dispatch
+
+jobs:
+    Build:
+        runs-on: ubuntu-latest
+        steps:
+
+            - name: AI Agent For the checking of Phishing Email
+              run: |
+                echo "This code is the purpose of the AI Agent to check for phishing email"
+                echo "Wite a application probably"
+            - name: Do Collabration
+              run:
+                echo "This code is reviewed by team leader"
+
+    Test:
+        env:
+            TEST_VAR: "The code is working well"
+        needs: Build
+        runs-on: ubuntu-latest
+        steps:
+            - name: This stage is the code testing stage
+              run: |
+                echo "The code is testing"
+                echo "Code is successful"
+                echo "${{ env.TEST_VAR }} and then moving onto next stage"
+
+    Deploy:
+        needs: Test
+        runs-on: ubuntu-latest
+        steps:
+            - name: This is deployment stage
+              run: |
+                echo "The deployment is successful"
+                echo "Currently, the code is on the production"
+
